@@ -1,11 +1,11 @@
 # Sports_Azure_Data_Pipeline
 
-This repo extracts data from an external Soccer Rest API and utilizes Azures data platform for data integration and Orchestration. Furthermore, this Data pipeline utilizes Azure data foctory to connect to the external API, Azure data lake storage for storage and synapse notebooks to utilize apache spark for data processing for bronze, silver and gold table development.
+This repo extracts data from an external Soccer Rest API and utilizes Azures data platform for data integration and Orchestration. Furthermore, this Data pipeline utilizes Azure data factory to connect to the external API, Azure data lake storage for storage and synapse notebooks to utilize apache spark for data processing for bronze, silver and gold table development.
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-This pipeline utilizes terraform for deploying resources on Azure. The three components here are the Terraform CLI, Terraform Provider, and the Azures resource manager. Together these create IAC. 
+This pipeline utilizes terraform for deploying resources on Azure. The three components here are the Terraform CLI, Terraform/Azure Provider, and Azures resource manager. Together these create IAC. 
 
 Terraform CLI: Performs 3 main tasks
 
@@ -23,4 +23,11 @@ Azure Resource Manager (ARM): The control tower
 
  - ARM receives the API calls from the Azure/Terraform Provider and handles the resource deployment.
  - ARM also handles API request validdation and communciates with Azure Infrastructure/services to create update and delete resources
- - ARM then processes the API Request and then sends the metadata and current state back to terraform
+ - ARM then processes the API Request and then sends the metadata and current state back to terraform for saving the terraform state file
+
+
+Terraform CLI is where code execution occurs to ensure you can manage the infrastrucutres lifecycle. The terraform provider allows for turning cloud configurations into API calls for which the Azure resource manager validates the request for forcing policies that interact with Azure services. This workflow allows for consistent infrastructure deployment.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
