@@ -1,0 +1,4 @@
+terraform/backend-setup/backend.tfvars
+terraform/backend-setup/terraform.tfstate
+terraform/backend-setup/.terraform
+terraform/backend-setup/.terraform.lock.hcl

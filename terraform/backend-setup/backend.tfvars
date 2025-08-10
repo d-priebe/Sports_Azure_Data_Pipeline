@@ -1,2 +1,2 @@
-project_name = "Data_engineering_Test"
+project_name = "desportspipe"
 location = "East US"
