@@ -1,5 +1,22 @@
 # Sports_Azure_Data_Pipeline
 
+
+Steps for replication:
+
+1. python3 -m venv venv
+2. source ./venv/bin/activate
+3. Install Terraform:
+    brew tap hashicorp/tap
+    brew install hashicorp/tap/terraform
+4. Verify:  terraform -version
+5. Install Azure CLI:
+    brew install pipx
+    pipx ensurepath
+    pipx install azure-cli
+6. Verify: az version
+
+
+-----------------------------------------------
 This repo extracts data from an external Soccer Rest API and utilizes Azures data platform for data integration and Orchestration. Furthermore, this Data pipeline utilizes Azure data factory to connect to the external API, Azure data lake storage for storage and synapse notebooks to utilize apache spark for data processing for bronze, silver and gold table development.
 
 
