@@ -1,4 +1,10 @@
-terraform/backend-setup/backend.tfvars
-terraform/backend-setup/terraform.tfstate
-terraform/backend-setup/.terraform
-terraform/backend-setup/.terraform.lock.hcl
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Ignore Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Ignore the .terraform directory
+.terraform/

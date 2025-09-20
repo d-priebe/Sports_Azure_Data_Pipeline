@@ -1,7 +1,7 @@
 # Sports_Azure_Data_Pipeline
 
 
-Steps for replication:
+## Steps for Installation:
 
 1. python3 -m venv venv
 2. source ./venv/bin/activate
@@ -16,7 +16,26 @@ Steps for replication:
 6. Verify: az version
 
 
------------------------------------------------
+## Steps for Running IAC:
+1. terraform init   - Initilizes proivder plugins, etc..
+2. terraform fmt    - Ensures formatting is correct
+3. terraform validate    - Ensures syntatic & Semantic consistency
+4. terraform plan -var-file="name_of_file.tfvars"   - Determines what resources need to be deployed, updated & or removed
+5. terraform apply -var-file="backend.tfvars"       - Deploys resources to cloud
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Reference Links
+- [Azure Storage SKU Tiers](https://learn.microsoft.com/en-us/azure/search/search-sku-tier)
+- [Lakehouse Medallion Architecture](https://learn.microsoft.com/en-us/azure/databricks/lakehouse/medallion)
+- [Azure Sandbox Guidance](https://learn.microsoft.com/en-us/azure/architecture/guide/azure-sandbox/azure-sandbox)
+- [Azure Access tiers for blob storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)
+- [Store Terraform state azure storage](https://learn.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli)
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 This repo extracts data from an external Soccer Rest API and utilizes Azures data platform for data integration and Orchestration. Furthermore, this Data pipeline utilizes Azure data factory to connect to the external API, Azure data lake storage for storage and synapse notebooks to utilize apache spark for data processing for bronze, silver and gold table development.
 
 
