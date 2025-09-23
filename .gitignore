@@ -8,3 +8,13 @@
 
 # Ignore the .terraform directory
 .terraform/
+
+# Ignore env file
+**/.env
+terraform/**/.env
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
