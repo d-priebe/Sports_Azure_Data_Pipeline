@@ -1,0 +1,27 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+      - refs/heads/*
+  tags:
+    include:
+      - *
+
+pool:
+  name: Default
+
+steps:
+
+  - checkout: self
+    fetchDepth: 0 # keep full history
+
+  - script: |
+      git config user.name "Azure DevOps Mirror"
+      git config user.email "azp-mirror@users.noreply.github.com"
+
+      git remote remove mirror 2>/dev/null || true
+      git remote add mirror https://$(GITHUB_USER):$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
+
+      git push --mirror --prune mirror
+    displayName: "Mirror Azure Repo --> GitHub Repo"
