@@ -1,0 +1,15 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - README.md
+      - .gitignore
+      - assets/*
+
+pool:
+  name: Default
+
+steps:
+  - script: echo "Testing on-prem caffeinated agent/runner"
