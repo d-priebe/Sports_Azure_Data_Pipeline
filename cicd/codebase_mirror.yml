@@ -20,11 +20,24 @@ steps:
     fetchDepth: 0 # keep full history
 
   - script: |
-      git config user.name "Azure DevOps Mirror"
+      set -euo pipefail
+
+      # Sanity checks
+      : "${GITHUB_TOKEN:?Missing GITHUB_TOKEN}"
+      : "${GITHUB_REPO:?Missing GITHUB_REPO}"
+
+      git config user.name  "Azure DevOps Mirror"
       git config user.email "azp-mirror@users.noreply.github.com"
 
+      # Populate local refs for ALL remote branches & tags
+      git fetch origin +refs/heads/*:refs/heads/* --prune
+      git fetch origin --tags --prune
+
+      # Add mirror remote using PAT
       git remote remove mirror 2>/dev/null || true
       git remote add mirror "https://x-access-token:$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git"
 
-      git push --mirror --prune mirror
-    displayName: "Mirror Azure Repo --> GitHub Repo"
+      # Push all branches and all tags; prune deletes only branches absent locally
+      git push mirror --all --prune
+      git push mirror --tags --prune
+    displayName: "Mirror Azure Repo → GitHub Repo"
