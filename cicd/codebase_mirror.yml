@@ -6,7 +6,7 @@ trigger:
       - refs/heads/*
   tags:
     include:
-      - *
+      - "*"
 
 pool:
   name: Default
