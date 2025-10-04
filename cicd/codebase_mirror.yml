@@ -11,6 +11,9 @@ trigger:
 pool:
   name: Default
 
+variables:
+  - group: Terraform_Git_variables
+
 steps:
 
   - checkout: self
