@@ -41,3 +41,6 @@ steps:
       git push mirror --all --prune
       git push mirror --tags --prune
     displayName: "Mirror Azure Repo → GitHub Repo"
+    env:
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
+      GITHUB_REPO:  $(GITHUB_REPO)
