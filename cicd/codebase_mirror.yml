@@ -24,7 +24,7 @@ steps:
       git config user.email "azp-mirror@users.noreply.github.com"
 
       git remote remove mirror 2>/dev/null || true
-      git remote add mirror https://$(GITHUB_USER):$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
+      git remote add mirror "https://x-access-token:$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git"
 
       git push --mirror --prune mirror
     displayName: "Mirror Azure Repo --> GitHub Repo"
