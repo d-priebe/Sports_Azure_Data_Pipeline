@@ -1,0 +1,62 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - README.md
+      - .gitignore
+      - scripts/*
+      - data-factory/*
+      - databricks-spark/*
+      - utilities/*
+
+parameters:
+  - name: deployInfrastructure
+    displayname: "Deploy Infrastructure"
+    type: boolean
+    default: true
+
+  - name: destoryInfrastructure
+    displayname: "Destroy Infrastructure"
+    type: boolean
+    default: true
+
+variables:
+  - template: variables.yml
+
+pool:
+  name: Default
+
+stages:
+
+  - stage: Build
+    displayName: "Build Stage"
+    variables:
+      - group: Terraform_Git_variables
+    jobs:
+      - job: Buildjob
+        displayName: "Build Terraform"
+        steps:
+          - template build_terraform.yml
+
+  - stage: Deploy
+    displayName: "Release Stage"
+    dependsOn: Build
+    condition: and(succeeded('Build'), ${{ eq(parameters.deployInfrastructure, true) }}) # Only run if the build stage is successful
+    jobs:
+      - job: DeployJob
+        displayName: "Deploy Terraform"
+        steps:
+          - template: deploy_terraform.yml
+
+  
+  - stage: Destroy
+    displayName: "Destroy Stage"
+    dependsOn: Build
+    condition: ${{ eq(parameters.destroyInfrastructure, true) }} # Only run if the destroyInfrastructure parameter is true
+    jobs:
+      - job: DestroyJob
+        displayName: "Destroy Terraform"
+        steps:
+          - template: destroy_terraform.yml

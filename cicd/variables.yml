@@ -1,0 +1,14 @@
+variables:
+  # Terraform Configuration
+  workingDirectory: "terraform/azure-platform"
+  terraformRootDirectory: "terraform"
+  terraformVersion: "1.13.3"                          # Terraform version to use
+
+  # Azure Service Connection
+  serviceConnection: ""            # Name of the Azure DevOps service connection using OIDC
+
+  # Backend Storage Configuration
+  backendResourceGroup: "esportspipe-terraform"   # Resource group containing the storage account - CLI: az group list -o table
+  backendStorageAccountName: "desportspipetfstate" # Storage account for Terraform state - CLI: az storage account list -g backendResourceGroup -o table
+  backendContainerName: "tfstate-container"                     # Blob container for state files
+  backendKey: "state.tfstate"                         # Name of the state file
